@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xsi:schemaLocation="http://www.springframework.org/schema/beans
+							 http://www.springframework.org/schema/beans/spring-beans.xsd" 
+				xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+					 xmlns="http://www.springframework.org/schema/beans"
+					 default-init-method="default_init" default-destroy-method="default_destroy">
+<!-- getBean메서드에 의해서 생성자가 
+호출된 후 bean1_init()실행. close()메서드 호출 후 bean1_destroy() 실행 -->
+<bean id="t1" class='kr.co.softsoldesk.beans2.TestBean1' lazy-init="true"
+init-method="bean1_init" destroy-method="bean1_destroy"/>
+
+<bean id="t2" class='kr.co.softsoldesk.beans2.TestBean2' lazy-init="true"/>
+
+<!-- #3 init-method destroy-method와 default-init defalut-destroy 모두 호출시
+		init-method destroy-method가 호출됨 -->
+<bean id="t3" class='kr.co.softsoldesk.beans2.TestBean3' lazy-init="true"
+init-method="bean3_init" destroy-method="bean3_destroy"/>
+
+<!-- #4 init-method destroy-method가 없는데 등록되므로 ERROR-->
+<!-- <bean id="t4" class='kr.co.softsoldesk.beans2.TestBean4' lazy-init="true"
+init-method="bean4_init" destroy-method="bean4_destroy"/> -->
+
+<!-- #4 init-method destroy-method가 모두 없는데 호출시 무시하므로 에러 없음-->
+<bean id="t4" class='kr.co.softsoldesk.beans2.TestBean4' lazy-init="true"/>
+</beans>
