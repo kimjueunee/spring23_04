@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                         http://www.springframework.org/schema/beans">   
+                         
+             <bean id="t1" class='kr.co.softsoldesk.beans3.TestBean'>
+             	<!-- 제네릭이 String인 리스트 -->
+             	<property name="list1">
+             		<list>
+             			<value>Java</value>
+             			<value>Spring</value>
+             			<value>Python</value>
+             		</list>
+             	</property>
+             	
+             	<!-- 제네릭이 Integer인 리스트 -->
+             	<property name="list2">
+             		<list> <!-- 문자열외에는 반드시 타입을 선언하는것을 지향 -->
+             			<value type="int">100</value>
+             			<value type="int">200</value>
+             			<value type="int">300</value>
+             		</list>
+             	</property>
+             	
+             	<!-- 제네릭이 DataBean인 리스트 -->
+             	<property name="list3">
+             		<list> 
+             			<!-- 객체 직접 주입 -->
+             			<bean class="kr.co.softsoldesk.beans3.DataBean"/>
+             			<bean class="kr.co.softsoldesk.beans3.DataBean"/>
+             			<!-- 이미 선언된 객체를 참조(ref bean='data_bean') -->
+             			<ref bean="data_bean"/>
+             			<ref bean="data_bean"/>
+             		</list>
+             	</property>
+             	
+             	<!-- 제네릭이 String인 Set -->
+             	<property name="set1">
+             		<set>
+             			<value>Java</value>
+             			<value>Spring</value>
+             			<value>Python</value>
+             			<value>Python</value>
+             			<value>Python</value>
+             		</set>
+             	</property>
+             	<!-- 제네릭이 Integer인 Set -->
+             	<property name="set2">
+             		<set>
+             			<value type="int">100</value>
+             			<value type="int">200</value>
+             			<value type="int">300</value>
+             			<value type="int">300</value>
+             			<value type="int">300</value>
+             		</set>
+             	</property>
+            
+
+				<!-- 제네릭이 DataBean인 Set -->
+             	<property name="set3">
+             		<set>
+             			<!-- 객체 직접 주입 -->
+             			<bean class="kr.co.softsoldesk.beans3.DataBean"/>
+             			<bean class="kr.co.softsoldesk.beans3.DataBean"/>
+             			<!-- 이미 정의된 객체 참조 -->
+             			<ref bean="data_bean"/>
+             			<ref bean="data_bean"/>
+             			<ref bean="data_bean"/>
+             			<ref bean="data_bean"/>
+             		</set>
+             	</property>
+             	
+             	<property name=map1">
+             		<map>
+             			<entry key="k1" value="문자열" />
+           				 <entry key="k2" value="100" value-type="int" />
+           				 <entry key="k3" value-ref="dataBean" />
+             		</map>
+             	</property>
+             	
+             	<!-- property 등록 -->
+             	<property name="prop1">
+             		<props>
+             			<prop key="pro1">A</prop>
+            			<prop key="pro2">B</prop>
+             		</props>
+             	</property>
+             	</bean>
+             <bean id="ListTest" class="kr.co.softsoldesk.beans3.DataBean" scope="prototype"/>
+
+				<!-- 응용 -->
+				<bean id="addr" class="kr.co.softsoldesk.beans3.DataBean"
+				<property name="addressList">
+				<list>
+					<value>서울시 종로구 관철동</value>
+					<value>서울시 성동구 행당동</value>
+				</list>
+				</property>
+</beans>                         

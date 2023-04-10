@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                         http://www.springframework.org/schema/beans/spring-beans.xsd"
+                         default-autowire="byName">
+   
+      <!-- setter를 이용한 주입 -->
+      <bean id="obj1" class="kr.co.softsoldesk.beans4.TestBean1">
+         <property name="data1" ref="data_bean1" />
+         <property name="data2" ref="data_bean1" />
+      </bean>
+      <!-- TestBean1에서 DataBean1을 참조하기 위해 DataBean1클래스의 data_bean1객체 생성 -->
+      <bean id="data_bean1" class="kr.co.softsoldesk.beans4.DataBean1" scope="prototype" />
+      
+      <!-- byName를 이용한 주입 -->
+      <bean id="obj2" class="kr.co.softsoldesk.beans4.TestBean1" autowire="byName" />
+         <bean id="data1" class="kr.co.softsoldesk.beans4.DataBean1" />
+         <bean id="data2" class="kr.co.softsoldesk.beans4.DataBean1" />
+      
+      <!-- byType를 이용한 주입 -->
+      <bean id="obj3" class="kr.co.softsoldesk.beans4.TestBean2" autowire="byType" />
+      <!-- 동일타입 중복 선언시 오류 발생 -->
+      <!-- <bean class="kr.co.soldesk.beans4.DataBean2"  /> -->
+      
+      <!-- 생성자를 이용한 일반 주입법 -->
+      <bean id="data_bean2" class="kr.co.softsoldesk.beans4.DataBean2" />
+      <bean id="obj4" class="kr.co.softsoldesk.beans4.TestBean3" >
+         <constructor-arg ref="data_bean2" index="0" />
+         <constructor-arg ref="data_bean2" index="1" />
+      </bean>
+      
+      <!-- 생성자를 이용한 자동 주입법 -->
+      <bean id="obj5" class="kr.co.softsoldesk.beans4.TestBean3" autowire="constructor" />
+      
+      <!-- 생성자의 매개변수 4개 일반 주입법 -->
+      <bean id="obj6" class="kr.co.softsoldesk.beans4.TestBean3" autowire="constructor">
+         <constructor-arg value="100" type="int" index="0" />
+         <constructor-arg value="project1" index="1" />
+         <constructor-arg ref="data_bean2" index="2" />
+         <constructor-arg ref="data_bean2" index="3" />
+      </bean>
+      
+      <!-- 생성자의 매개변수 4개 자동 주입법 -->
+      <bean id="obj7" class="kr.co.softsoldesk.beans4.TestBean3" autowire="constructor">
+         <constructor-arg value="200" type="int" index="0" />
+         <constructor-arg value="project2" index="1" />
+      </bean>
+     <!--  자동주입하지 않고 사용할 시 default-autowire="byName" 선언 -->
+     <bean id='obj8' class='kr.co.softsoldesk.beans4.TestBean1'/>
+     <!--  default-autowire="byName" 선언이 되있을 시 참조하고 싶지 않음 -->
+     <bean id='obj9' class='kr.co.softsoldesk.beans4.TestBean1' autowire="no"/>
+</beans>                                             

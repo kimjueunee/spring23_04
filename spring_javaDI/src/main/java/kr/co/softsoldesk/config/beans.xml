@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                         http://www.springframework.org/schema/beans/spring-beans.xsd">
+      
+        <!-- <bean class='kr.co.softsoldesk.beans.TestBean1'/> -->
+        <bean id='xml1' class='kr.co.softsoldesk.beans.TestBean1'/>
+        <bean id='xml2' class='kr.co.softsoldesk.beans.TestBean2' lazy-init="true"/>
+        <bean id='xml3' class='kr.co.softsoldesk.beans.TestBean3' scope="prototype"/>
+        <!-- 클래스를 하나만 참조할시 굳이 id는 필요없음 -->
+        <bean class='kr.co.softsoldesk.beans.TestBean4'/>
+        <!-- 같은 클래스를 여러번 참조할 시 오류=>모호성 -->
+        <bean class='kr.co.softsoldesk.beans.TestBean4'/>
+         <!-- id없이 같은 클래스를 여러번 참조할 시 primary="true" 필요 -->
+        <bean class='kr.co.softsoldesk.beans.TestBean4' primary="true"/>
+       
+    	
+                         
+</beans>                         
